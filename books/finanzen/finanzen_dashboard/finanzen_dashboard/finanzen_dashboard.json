@@ -1,0 +1,21 @@
+{
+ "cards": [],
+ "charts": [
+  {
+   "chart": "Kategorien",
+   "width": "Full"
+  }
+ ],
+ "creation": "2023-12-27 22:04:55.810399",
+ "dashboard_name": "Finanzen Dashboard",
+ "docstatus": 0,
+ "doctype": "Dashboard",
+ "idx": 0,
+ "is_default": 1,
+ "is_standard": 1,
+ "modified": "2023-12-27 22:09:41.716686",
+ "modified_by": "Administrator",
+ "module": "Finanzen",
+ "name": "Finanzen Dashboard",
+ "owner": "Administrator"
+}

@@ -1,0 +1,143 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:BETR-{DD}.{MM}.{YY}-{##}",
+ "creation": "2023-12-27 21:12:24.336619",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "betrag_eintragen_section",
+  "betrag",
+  "kategorie",
+  "datum",
+  "recipient",
+  "verwendungszweck",
+  "is_transfer",
+  "column_break_fzms",
+  "restbudget",
+  "gesamt_budget",
+  "sonstiges_tab",
+  "andere_angaben_section",
+  "ist_einnahme",
+  "iban",
+  "notizen"
+ ],
+ "fields": [
+  {
+   "fieldname": "betrag",
+   "fieldtype": "Currency",
+   "in_filter": 1,
+   "in_list_view": 1,
+   "in_preview": 1,
+   "label": "Betrag",
+   "options": "EUR",
+   "reqd": 1
+  },
+  {
+   "fieldname": "datum",
+   "fieldtype": "Date",
+   "label": "Datum",
+   "reqd": 1
+  },
+  {
+   "fieldname": "verwendungszweck",
+   "fieldtype": "Small Text",
+   "label": "Verwendungszweck"
+  },
+  {
+   "fieldname": "betrag_eintragen_section",
+   "fieldtype": "Section Break",
+   "label": "Betrag eintragen"
+  },
+  {
+   "fieldname": "kategorie",
+   "fieldtype": "Link",
+   "label": "Kategorie",
+   "options": "Kategorie",
+   "reqd": 1
+  },
+  {
+   "fieldname": "sonstiges_tab",
+   "fieldtype": "Tab Break",
+   "label": "Sonstiges"
+  },
+  {
+   "fieldname": "andere_angaben_section",
+   "fieldtype": "Section Break",
+   "label": "Andere Angaben"
+  },
+  {
+   "default": "0",
+   "fieldname": "ist_einnahme",
+   "fieldtype": "Check",
+   "label": "ist Einnahme"
+  },
+  {
+   "fieldname": "iban",
+   "fieldtype": "Data",
+   "label": "IBAN"
+  },
+  {
+   "fieldname": "notizen",
+   "fieldtype": "Text Editor",
+   "label": "Notizen"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_transfer",
+   "fieldtype": "Check",
+   "hidden": 1,
+   "label": "ist \u00dcbertrag"
+  },
+  {
+   "fieldname": "recipient",
+   "fieldtype": "Data",
+   "label": "Empf\u00e4nger"
+  },
+  {
+   "fieldname": "restbudget",
+   "fieldtype": "Currency",
+   "is_virtual": 1,
+   "label": "Restbudget",
+   "options": "EUR",
+   "read_only": 1
+  },
+  {
+   "fieldname": "gesamt_budget",
+   "fieldtype": "Currency",
+   "is_virtual": 1,
+   "label": "Gesamtbudget",
+   "options": "EUR"
+  },
+  {
+   "fieldname": "column_break_fzms",
+   "fieldtype": "Column Break"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-12-30 07:08:19.118314",
+ "modified_by": "Administrator",
+ "module": "Finanzen",
+ "name": "Betrag",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

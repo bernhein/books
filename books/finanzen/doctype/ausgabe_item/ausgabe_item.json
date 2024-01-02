@@ -1,0 +1,121 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:AUS-ITM-{DD}.{MM}.{YY}-{##}",
+ "creation": "2023-12-30 21:40:40.253967",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "details_section",
+  "betrag",
+  "datum",
+  "kategorie",
+  "empf\u00e4nger",
+  "verwendungszweck",
+  "column_break_nhco",
+  "budget",
+  "gesamtbudget",
+  "restbudget",
+  "sonstiges_tab",
+  "sonstiges_section",
+  "notizen",
+  "iban"
+ ],
+ "fields": [
+  {
+   "fieldname": "details_section",
+   "fieldtype": "Section Break",
+   "label": "Details"
+  },
+  {
+   "fieldname": "betrag",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Betrag",
+   "non_negative": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "kategorie",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Kategorie",
+   "options": "Kategorie",
+   "reqd": 1
+  },
+  {
+   "fieldname": "budget",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Budget",
+   "options": "Budget Item",
+   "reqd": 1
+  },
+  {
+   "fieldname": "datum",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Datum",
+   "reqd": 1
+  },
+  {
+   "fieldname": "empf\u00e4nger",
+   "fieldtype": "Data",
+   "label": "Empf\u00e4nger"
+  },
+  {
+   "fieldname": "verwendungszweck",
+   "fieldtype": "Small Text",
+   "label": "Verwendungszweck"
+  },
+  {
+   "fieldname": "column_break_nhco",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "gesamtbudget",
+   "fieldtype": "Currency",
+   "is_virtual": 1,
+   "label": "Gesamtbudget"
+  },
+  {
+   "fieldname": "restbudget",
+   "fieldtype": "Currency",
+   "is_virtual": 1,
+   "label": "Restbudget"
+  },
+  {
+   "fieldname": "sonstiges_tab",
+   "fieldtype": "Tab Break",
+   "label": "Sonstiges"
+  },
+  {
+   "fieldname": "sonstiges_section",
+   "fieldtype": "Section Break",
+   "label": "Sonstiges"
+  },
+  {
+   "fieldname": "notizen",
+   "fieldtype": "Text Editor",
+   "label": "Notizen"
+  },
+  {
+   "fieldname": "iban",
+   "fieldtype": "Data",
+   "label": "IBAN"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2023-12-30 22:11:50.668728",
+ "modified_by": "Administrator",
+ "module": "Finanzen",
+ "name": "Ausgabe Item",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
