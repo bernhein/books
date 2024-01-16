@@ -1,8 +1,8 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "format:EIN-ITM-{DD}.{MM}.{YY}-{##}",
- "creation": "2023-12-30 21:18:55.539827",
+ "autoname": "format:VORL-EIN-ITM-{DD}.{MM}.{YY}-{##}",
+ "creation": "2024-01-11 14:34:32.431995",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
@@ -10,13 +10,10 @@
   "einnahme_section",
   "betrag",
   "kategorie",
-  "datum",
-  "column_break_xror",
+  "column_break_dttb",
   "von",
-  "pdf",
-  "sonstiges_tab",
-  "sonstiges_section",
-  "notizen"
+  "notizen_tab",
+  "text_editor_fzzo"
  ],
  "fields": [
   {
@@ -29,30 +26,19 @@
    "fieldtype": "Currency",
    "in_list_view": 1,
    "label": "Betrag",
+   "non_negative": 1,
    "reqd": 1
   },
   {
    "fieldname": "kategorie",
    "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "Kategorie",
+   "label": "Nach Kategorie",
    "options": "Kategorie",
    "reqd": 1
   },
   {
-   "fieldname": "datum",
-   "fieldtype": "Date",
-   "in_list_view": 1,
-   "label": "Datum",
-   "reqd": 1
-  },
-  {
-   "fieldname": "pdf",
-   "fieldtype": "Attach",
-   "label": "PDF"
-  },
-  {
-   "fieldname": "column_break_xror",
+   "fieldname": "column_break_dttb",
    "fieldtype": "Column Break"
   },
   {
@@ -63,27 +49,22 @@
    "reqd": 1
   },
   {
-   "fieldname": "notizen",
-   "fieldtype": "Text Editor",
-   "label": "\u00b4"
-  },
-  {
-   "fieldname": "sonstiges_tab",
+   "fieldname": "notizen_tab",
    "fieldtype": "Tab Break",
    "label": "Notizen"
   },
   {
-   "fieldname": "sonstiges_section",
-   "fieldtype": "Section Break"
+   "fieldname": "text_editor_fzzo",
+   "fieldtype": "Text Editor"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-01-11 14:39:52.178154",
+ "modified": "2024-01-11 15:54:30.227614",
  "modified_by": "Administrator",
  "module": "Finanzen",
- "name": "Einnahme Item",
+ "name": "Vorlage Einnahme Item",
  "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [],

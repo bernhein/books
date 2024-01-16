@@ -14,6 +14,8 @@ datum = undefined;
 budget_list = undefined;
 gesamtbudgetIsUpdated = false;
 
+
+/*
 function updateGesamtBudget(frm, cdt, cdn){
     gesamtbudgetIsUpdated = false;
     frappe.db.get_value('Kategorie', frm.fields_dict.kategorie.value, 'budget_high').then((res) => {
@@ -98,3 +100,5 @@ frappe.ui.form.on('Betrag', { // The child table is defined in a DoctType called
         updateRestBudget(frm, cdt, cdn);
     }
 });
+
+*/

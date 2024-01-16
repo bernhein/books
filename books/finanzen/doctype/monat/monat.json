@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "format:MONAT-{monat_erster_tag}-{MM}.{YY}-{##}",
+ "autoname": "format:MONAT-{MM}.{YY}-{##}",
  "creation": "2023-12-30 07:06:35.328968",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -10,15 +10,18 @@
   "startbetrag",
   "endbetrag",
   "column_break_szyv",
+  "monat_davor",
   "monat_erster_tag",
-  "vormonat",
+  "monat_danach",
   "start_endbetrag",
   "tbl_startbetrag",
   "tbl_endbetrag",
+  "geldfluss_tab",
   "geldfluss",
-  "tbl_ausgaben",
   "tbl_einnahmen",
+  "tbl_ausgaben",
   "tbl_transaktionen",
+  "budget_tab",
   "budgets_section",
   "tbl_budget"
  ],
@@ -45,12 +48,6 @@
    "fieldtype": "Column Break"
   },
   {
-   "fieldname": "vormonat",
-   "fieldtype": "Link",
-   "label": "Vormonat",
-   "options": "Monat"
-  },
-  {
    "collapsible": 1,
    "fieldname": "start_endbetrag",
    "fieldtype": "Section Break",
@@ -60,19 +57,19 @@
    "fieldname": "tbl_startbetrag",
    "fieldtype": "Table",
    "label": "Startbetrag",
-   "options": "About Us Team Member"
+   "options": "Startbetrag Item"
   },
   {
    "fieldname": "tbl_endbetrag",
    "fieldtype": "Table",
    "label": "Endbetrag",
-   "options": "About Us Team Member"
+   "options": "Endbetrag Item"
   },
   {
+   "collapsible": 1,
    "fieldname": "geldfluss",
    "fieldtype": "Section Break",
-   "label": "Geldfluss",
-   "options": "A"
+   "label": "Geldfluss"
   },
   {
    "allow_in_quick_entry": 1,
@@ -113,11 +110,33 @@
    "in_list_view": 1,
    "label": "Monat",
    "reqd": 1
+  },
+  {
+   "fieldname": "monat_davor",
+   "fieldtype": "Link",
+   "label": "Monat davor",
+   "options": "Monat"
+  },
+  {
+   "fieldname": "monat_danach",
+   "fieldtype": "Link",
+   "label": "Monat danach",
+   "options": "Monat"
+  },
+  {
+   "fieldname": "geldfluss_tab",
+   "fieldtype": "Tab Break",
+   "label": "Geldfluss"
+  },
+  {
+   "fieldname": "budget_tab",
+   "fieldtype": "Tab Break",
+   "label": "Budget"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-12-30 22:15:31.547022",
+ "modified": "2024-01-11 15:33:02.477290",
  "modified_by": "Administrator",
  "module": "Finanzen",
  "name": "Monat",
@@ -137,6 +156,8 @@
    "write": 1
   }
  ],
+ "show_name_in_global_search": 1,
+ "show_preview_popup": 1,
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": []

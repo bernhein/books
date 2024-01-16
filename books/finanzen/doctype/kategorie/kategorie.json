@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "format:KAT-{kategorie_name}-{MM}.{YY}-{##}",
+ "autoname": "format:KAT-{kategorie_name}-{MM}.{YY}-{##}\t",
  "creation": "2023-12-27 21:24:48.077242",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -67,7 +67,7 @@
  "index_web_pages_for_search": 1,
  "is_tree": 1,
  "links": [],
- "modified": "2023-12-30 21:57:59.310167",
+ "modified": "2024-01-11 15:25:41.936322",
  "modified_by": "Administrator",
  "module": "Finanzen",
  "name": "Kategorie",
@@ -88,8 +88,10 @@
    "write": 1
   }
  ],
+ "show_title_field_in_link": 1,
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": [],
+ "title_field": "kategorie_name",
  "track_changes": 1
 }

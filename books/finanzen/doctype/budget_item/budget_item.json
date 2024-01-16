@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "format:BUD-ITM-{DD}.{MM}.{YY}-{##}",
+ "autoname": "format:{budget_name}-{DD}.{MM}.{YY}-{##}",
  "creation": "2023-12-30 21:49:33.596419",
  "doctype": "DocType",
  "editable_grid": 1,
@@ -48,7 +48,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-12-30 22:08:44.692594",
+ "modified": "2024-01-11 15:28:28.428684",
  "modified_by": "Administrator",
  "module": "Finanzen",
  "name": "Budget Item",
