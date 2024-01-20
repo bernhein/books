@@ -11,16 +11,16 @@
   "endbetrag",
   "column_break_szyv",
   "monat_davor",
-  "monat_erster_tag",
+  "monat",
   "monat_danach",
   "start_endbetrag",
   "tbl_startbetrag",
   "tbl_endbetrag",
   "geldfluss_tab",
   "geldfluss",
-  "tbl_einnahmen",
-  "tbl_ausgaben",
-  "tbl_transaktionen",
+  "tbl_einnahme",
+  "tbl_ausgabe",
+  "tbl_transaktion",
   "budget_tab",
   "budgets_section",
   "tbl_budget"
@@ -48,7 +48,6 @@
    "fieldtype": "Column Break"
   },
   {
-   "collapsible": 1,
    "fieldname": "start_endbetrag",
    "fieldtype": "Section Break",
    "label": "Start- & Endbetrag"
@@ -66,34 +65,11 @@
    "options": "Endbetrag Item"
   },
   {
-   "collapsible": 1,
    "fieldname": "geldfluss",
    "fieldtype": "Section Break",
    "label": "Geldfluss"
   },
   {
-   "allow_in_quick_entry": 1,
-   "fieldname": "tbl_ausgaben",
-   "fieldtype": "Table",
-   "label": "Ausgaben",
-   "options": "Ausgabe Item"
-  },
-  {
-   "allow_in_quick_entry": 1,
-   "fieldname": "tbl_einnahmen",
-   "fieldtype": "Table",
-   "label": "Einnahmen",
-   "options": "Einnahme Item"
-  },
-  {
-   "allow_in_quick_entry": 1,
-   "fieldname": "tbl_transaktionen",
-   "fieldtype": "Table",
-   "label": "Transaktionen",
-   "options": "Transaktion Item"
-  },
-  {
-   "collapsible": 1,
    "fieldname": "budgets_section",
    "fieldtype": "Section Break",
    "label": "Budgets"
@@ -103,13 +79,6 @@
    "fieldtype": "Table",
    "label": "Budget",
    "options": "Budget Item"
-  },
-  {
-   "fieldname": "monat_erster_tag",
-   "fieldtype": "Date",
-   "in_list_view": 1,
-   "label": "Monat",
-   "reqd": 1
   },
   {
    "fieldname": "monat_davor",
@@ -132,11 +101,40 @@
    "fieldname": "budget_tab",
    "fieldtype": "Tab Break",
    "label": "Budget"
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "fieldname": "tbl_einnahme",
+   "fieldtype": "Table",
+   "label": "Einnahmen",
+   "options": "Einnahme Item"
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "fieldname": "tbl_ausgabe",
+   "fieldtype": "Table",
+   "label": "Ausgaben",
+   "options": "Ausgabe Item"
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "fieldname": "tbl_transaktion",
+   "fieldtype": "Table",
+   "label": "Transaktionen",
+   "options": "Transaktion Item"
+  },
+  {
+   "fieldname": "monat",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Monat",
+   "options": "Jan\nFeb\nMar\nApr\nMai\nJun\nJul\nAug\nSep\nOkt\nNov\nDez",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-01-11 15:33:02.477290",
+ "modified": "2024-01-19 20:42:21.905486",
  "modified_by": "Administrator",
  "module": "Finanzen",
  "name": "Monat",

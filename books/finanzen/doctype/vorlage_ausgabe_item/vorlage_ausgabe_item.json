@@ -13,7 +13,8 @@
   "recipient",
   "verwendungszweck",
   "column_break_ufye",
-  "budget"
+  "budget",
+  "tag"
  ],
  "fields": [
   {
@@ -56,12 +57,18 @@
    "label": "Budget",
    "options": "Budget",
    "reqd": 1
+  },
+  {
+   "fieldname": "tag",
+   "fieldtype": "Int",
+   "label": "Tag der Abbuchung",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-01-11 15:58:15.512278",
+ "modified": "2024-01-18 15:31:09.023343",
  "modified_by": "Administrator",
  "module": "Finanzen",
  "name": "Vorlage Ausgabe Item",

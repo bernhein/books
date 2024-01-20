@@ -12,6 +12,7 @@
   "kategorie",
   "column_break_dttb",
   "von",
+  "tag",
   "notizen_tab",
   "text_editor_fzzo"
  ],
@@ -19,7 +20,7 @@
   {
    "fieldname": "einnahme_section",
    "fieldtype": "Section Break",
-   "label": "Einnahme"
+   "label": "Einnahme - Vorlage"
   },
   {
    "fieldname": "betrag",
@@ -56,12 +57,18 @@
   {
    "fieldname": "text_editor_fzzo",
    "fieldtype": "Text Editor"
+  },
+  {
+   "fieldname": "tag",
+   "fieldtype": "Int",
+   "label": "Tag der Einnahme",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-01-11 15:54:30.227614",
+ "modified": "2024-01-18 15:33:02.020945",
  "modified_by": "Administrator",
  "module": "Finanzen",
  "name": "Vorlage Einnahme Item",

@@ -9,6 +9,7 @@
  "field_order": [
   "transkation_section",
   "betrag",
+  "tag",
   "column_break_wdcq",
   "source",
   "dest",
@@ -27,7 +28,7 @@
   {
    "fieldname": "transkation_section",
    "fieldtype": "Section Break",
-   "label": "Transkation"
+   "label": "Transkation - Vorlage"
   },
   {
    "fieldname": "column_break_wdcq",
@@ -63,12 +64,18 @@
    "fieldname": "notizen",
    "fieldtype": "Text Editor",
    "label": "Notizen"
+  },
+  {
+   "fieldname": "tag",
+   "fieldtype": "Int",
+   "label": "Tag der Transaktion",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-01-11 16:01:02.563364",
+ "modified": "2024-01-18 15:33:24.442140",
  "modified_by": "Administrator",
  "module": "Finanzen",
  "name": "Vorlage Transaktion Item",
