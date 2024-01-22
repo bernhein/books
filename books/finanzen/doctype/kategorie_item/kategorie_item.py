@@ -5,5 +5,5 @@
 from frappe.model.document import Document
 
 
-class EndbetragItem(Document):
+class KategorieItem(Document):
 	pass

@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "format:BUD-ITM-{DD}.{MM}.{YY}-{##}",
+ "autoname": "format:BUD-BASE-{DD}.{MM}.{YY}-{##}",
  "creation": "2023-12-30 22:04:30.211415",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -52,7 +52,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-01-11 15:26:44.417184",
+ "modified": "2024-01-22 17:45:11.267943",
  "modified_by": "Administrator",
  "module": "Finanzen",
  "name": "Budget",

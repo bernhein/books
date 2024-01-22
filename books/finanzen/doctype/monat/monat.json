@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "format:MONAT-{MM}.{YY}-{##}",
+ "autoname": "format:Monat-{MM}.{YY}-{##}",
  "creation": "2023-12-30 07:06:35.328968",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -14,8 +14,7 @@
   "monat",
   "monat_danach",
   "start_endbetrag",
-  "tbl_startbetrag",
-  "tbl_endbetrag",
+  "tbl_kategorie",
   "geldfluss_tab",
   "geldfluss",
   "tbl_einnahme",
@@ -51,18 +50,6 @@
    "fieldname": "start_endbetrag",
    "fieldtype": "Section Break",
    "label": "Start- & Endbetrag"
-  },
-  {
-   "fieldname": "tbl_startbetrag",
-   "fieldtype": "Table",
-   "label": "Startbetrag",
-   "options": "Startbetrag Item"
-  },
-  {
-   "fieldname": "tbl_endbetrag",
-   "fieldtype": "Table",
-   "label": "Endbetrag",
-   "options": "Endbetrag Item"
   },
   {
    "fieldname": "geldfluss",
@@ -130,11 +117,17 @@
    "label": "Monat",
    "options": "Jan\nFeb\nMar\nApr\nMai\nJun\nJul\nAug\nSep\nOkt\nNov\nDez",
    "reqd": 1
+  },
+  {
+   "fieldname": "tbl_kategorie",
+   "fieldtype": "Table",
+   "label": "Start- & Endbetrag",
+   "options": "Kategorie Item"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-01-19 20:42:21.905486",
+ "modified": "2024-01-22 20:30:36.237886",
  "modified_by": "Administrator",
  "module": "Finanzen",
  "name": "Monat",

@@ -10,9 +10,9 @@
 
 /**
  * Aufgaben:
- * - Automatische Übernahme von Budgets & Kategorien vom Vormonat
  * - Aktualisierung Startwerte- & Kategorien auf Basis des vorherigen Monats
  * - Sperrung Monat davor & danach?
+ * - Import Vorlagen
  * 
  * Erledigt:
  * - Eintragung von Monat davor/danach muss auch beim anderen Monat Update hervorrufen --> nur selektierbar, was frei ist
@@ -20,6 +20,7 @@
  * - Filter: nur unterste Kategorie & Budget anzeigbar!
  * - Aktualisierung von Werten wie Gesamtbudget & Restbudget (Ausgaben)
  * - Kalkulation Endwert
+ * - Automatische Übernahme von Budgets & Kategorien vom Vormonat
  */
 
 
@@ -90,12 +91,11 @@ function updateRestBudget(frm,cdt,cdn){
         
     }
 }
-
 function calc_startbetrag(frm){
     startbetrag = 0;
     for(var k = 0; k < frm.get_field("tbl_startbetrag").grid.grid_rows.length; k++){
         var row = frm.get_field("tbl_startbetrag").grid.grid_rows[k];
-        startbetrag += row.betrag;
+        startbetrag += row.startbetrag;
     }
 }
 
@@ -103,32 +103,24 @@ var used_categories = [];
 function set_category_filter(frm){
 
 
-    frm.fields_dict['tbl_startbetrag'].grid.get_field('kategorie').get_query = function(doc, cdt, cdn) {
+    frm.fields_dict['tbl_kategorie'].grid.get_field('kategorie').get_query = function(doc, cdt, cdn) {
         return {
             filters: {
                 'is_group': 0
             }
         };
     };
-    
-    frm.fields_dict['tbl_endbetrag'].grid.get_field('kategorie').get_query = function(doc, cdt, cdn) {
-        return {
-            filters: {
-                'is_group': 0
-            }
-        };
-    };
-
 
     used_categories = [];
     let excluded_categories = [];
-    frm.doc.tbl_startbetrag.forEach(s_item =>{
+    frm.doc.tbl_kategorie.forEach(s_item =>{
         used_categories.push(s_item.kategorie);
 
-        frappe.get_doc("Kategorie Item")
+        //frappe.get_doc("Kategorie Item")
     });
 
 
+    //Ausgabe
     frm.fields_dict['tbl_ausgabe'].grid.get_field('kategorie').get_query = function(doc, cdt, cdn) {
         return {
             filters: [
@@ -136,6 +128,8 @@ function set_category_filter(frm){
             ]
         };
     };
+
+    //Einnahme
     frm.fields_dict['tbl_einnahme'].grid.get_field('kategorie').get_query = function(doc, cdt, cdn) {
         return {
             filters: [
@@ -143,6 +137,8 @@ function set_category_filter(frm){
             ]
         };
     };
+
+    //Transaktion
     frm.fields_dict['tbl_transaktion'].grid.get_field('source').get_query = function(doc, cdt, cdn) {
         return {
             filters: [
@@ -178,10 +174,9 @@ frappe.ui.form.on('Monat', {
         };
 
         used_categories = [];
-        frm.doc.tbl_startbetrag.forEach(s_item =>{
+        frm.doc.tbl_kategorie.forEach(s_item =>{
             used_categories.push(s_item.kategorie);
         });
-
         
 
 		frm.add_custom_button('Aus Vorlage', function () { frm.trigger('get_items') }, __("Elemente einfügen"));
@@ -322,11 +317,11 @@ frappe.ui.form.on('Monat', {
     }
 });
 
-frappe.ui.form.on("Startbetrag Item", {
+frappe.ui.form.on("Kategorie Item", {
     heigh: function(frm, cdt, cdn){
         frm.save();
         doc = frappe.get_doc(cdt, cdn);
-        if (doc.heigh !== undefined && doc.kategorie !== undefined) {
+        if (doc.startbetrag !== undefined && doc.kategorie !== undefined) {
             calculateStartbetrag(frm);
         }
         
@@ -339,165 +334,139 @@ frappe.ui.form.on("Startbetrag Item", {
 });
 
 
-/*
 frappe.ui.form.on("Einnahme Item", {
-    //betrag, kategorie, datum, von, [pdf]
     betrag: function(frm, cdt, cdn){
-        frm.save();
-        doc = frappe.get_doc(cdt, cdn);
-        if (doc.betrag !== undefined && doc.kategorie !== undefined && doc.datum !== undefined && doc.von !== undefined) {
-            
-            //alles zusammen kalkulieren
+        let doc = frappe.get_doc(cdt, cdn);
+        if (doc.betrag !== undefined && doc.datum !== undefined && doc.kategorie !== undefined  && doc.von !== undefined) {
+            update_endbetrag_items(frm)
         }
-        
-      ;  
     },
     kategorie: function(frm, cdt, cdn){
-        
-        //set_category_filter(frm);
-    },
-    datum: function(frm, cdt, cdn){
-        
-        //set_category_filter(frm);
-    },
-    von: function(frm, cdt, cdn){
-        
-        //set_category_filter(frm);
-    },
-});
-*/
-frappe.ui.form.on("Einnahme Item", {
-    betrag: function(frm, cdt, cdn){
-        update_endbetrag(frm)
-    },
-    kategorie: function(frm, cdt, cdn){
-        update_endbetrag(frm)
+        let doc = frappe.get_doc(cdt, cdn);
+        if (doc.betrag !== undefined && doc.datum !== undefined && doc.kategorie !== undefined  && doc.von !== undefined) {
+            update_endbetrag_items(frm)
+        }
     },
 });
 
 frappe.ui.form.on("Ausgabe Item", {
     betrag: function(frm, cdt, cdn){
-        update_endbetrag(frm)
+        let doc = frappe.get_doc(cdt, cdn);
+        if (doc.betrag !== undefined && doc.datum !== undefined && doc.kategorie !== undefined  && doc.budget !== undefined) {
+            update_endbetrag_items(frm)
+        }
     },
     kategorie: function(frm, cdt, cdn){
-        update_endbetrag(frm)
+        let doc = frappe.get_doc(cdt, cdn);
+        if (doc.betrag !== undefined && doc.datum !== undefined && doc.kategorie !== undefined  && doc.budget !== undefined) {
+            update_endbetrag_items(frm)
+        }
     },
 });
 
 frappe.ui.form.on("Transaktion Item", {
     betrag: function(frm, cdt, cdn){
-        update_endbetrag(frm)
+        let doc = frappe.get_doc(cdt, cdn);
+        if (doc.betrag !== undefined && doc.datum !== undefined && doc.src !== undefined  && doc.dst !== undefined) {
+            update_endbetrag_items(frm)
+        }
     },
     source: function(frm, cdt, cdn){
-        update_endbetrag(frm)
+        let doc = frappe.get_doc(cdt, cdn);
+        if (doc.betrag !== undefined && doc.datum !== undefined && doc.src !== undefined  && doc.dst !== undefined) {
+            update_endbetrag_items(frm)
+        }
     },
     dest: function(frm, cdt, cdn){
-        update_endbetrag(frm)
+        let doc = frappe.get_doc(cdt, cdn);
+        if (doc.betrag !== undefined && doc.datum !== undefined && doc.src !== undefined  && doc.dst !== undefined) {
+            update_endbetrag_items(frm)
+        }
     },
 });
 
-function update_endbetrag(frm){
+function update_endbetrag_items(frm){
+    // Clear tbl_endbetrag
+    // Fetch the items from tbl_startbetrag
+    let katItems = frm.doc.tbl_kategorie || [];
+
+    frm.set_value("tbl_kategorie", []);
     frm.save();
-    let doc = frappe.get_doc(cdt, cdn);
-    if (doc.betrag !== undefined && doc.kategorie !== undefined && doc.datum !== undefined && doc.von !== undefined) {
+    // Iterate over startItems to populate tbl_endbetrag
+    katItems.forEach(item => {
+        let endItem = {
+            kategorie: item.kategorie,
+            startbetrag: item.startbetrag,  // Changed from 'heigh' based on the document structure
+            endbetrag: item.startbetrag  // Changed from 'heigh' based on the document structure
+        };
 
-        // Clear tbl_endbetrag
-        frm.set_value("tbl_endbetrag", []);
-        // Fetch the items from tbl_startbetrag
-        let startItems = frm.doc.tbl_startbetrag || [];
-
-        // Iterate over startItems to populate tbl_endbetrag
-        startItems.forEach(item => {
-            let endItem = {
-                kategorie: item.kategorie,
-                height: item.heigh  // Changed from 'heigh' based on the document structure
-            };
-
-            // Add values from tbl_einnahme
-            frm.doc.tbl_einnahme.forEach(einnahmeItem => {
-                if (einnahmeItem.kategorie === item.kategorie) {
-                    endItem.height += einnahmeItem.betrag;  // Changed from 'heigh' to 'height'
-                }
-            });
-
-            // Subtract values from tbl_ausgabe
-            frm.doc.tbl_ausgabe.forEach(ausgabeItem => {
-                if (ausgabeItem.kategorie === item.kategorie) {
-                    endItem.height -= ausgabeItem.betrag;  // Changed from 'heigh' to 'height'
-                }
-            });
-
-            // Adjust for transactions in tbl_transaktion
-            frm.doc.tbl_transaktion.forEach(transaktionItem => {
-                if (transaktionItem.source === item.kategorie) {
-                    endItem.height -= transaktionItem.betrag;  // Changed from 'heigh' to 'height'
-                }
-                if (transaktionItem.dest === item.kategorie) {
-                    endItem.height += transaktionItem.betrag;  // Changed from 'heigh' to 'height'
-                }
-            });
-
-            frm.add_child("tbl_endbetrag", endItem);
+        // Add values from tbl_einnahme
+        frm.doc.tbl_einnahme.forEach(einnahmeItem => {
+            if (einnahmeItem.kategorie === item.kategorie) {
+                endItem.endbetrag += einnahmeItem.betrag;  // Changed from 'heigh' to 'height'
+            }
         });
-        frm.refresh_field("tbl_endbetrag");
-        frm.save();
-    }
+
+        // Subtract values from tbl_ausgabe
+        frm.doc.tbl_ausgabe.forEach(ausgabeItem => {
+            if (ausgabeItem.kategorie === item.kategorie) {
+                endItem.endbetrag -= ausgabeItem.betrag;  // Changed from 'heigh' to 'height'
+            }
+        });
+
+        // Adjust for transactions in tbl_transaktion
+        frm.doc.tbl_transaktion.forEach(transaktionItem => {
+            if (transaktionItem.source === item.kategorie) {
+                endItem.endbetrag -= transaktionItem.betrag;  // Changed from 'heigh' to 'height'
+            }
+            if (transaktionItem.dest === item.kategorie) {
+                endItem.endbetrag += transaktionItem.betrag;  // Changed from 'heigh' to 'height'
+            }
+        });
+
+        frm.add_child("tbl_kategorie", endItem);
+    });
+    frm.refresh_field("tbl_kategorie");
+    frm.save();
+    calculateEndbetrag(frm);
+
+        
+    
 }
 
-/*
-frappe.ui.form.on("Einnahme Item", {
-    //betrag, kategorie, datum, von, [pdf]
-    betrag: function(frm, cdt, cdn){
-        frm.save();
-        doc = frappe.get_doc(cdt, cdn);
-        if (doc.betrag !== undefined && doc.kategorie !== undefined && doc.datum !== undefined && doc.von !== undefined) {
-            
-            //Your task:
 
-            //clear tbl_endbetrag
-            // take the items from tbl_startbetrag
-            // add to the tbl_startbetrag rows (doctype "Startbetrag Item") the values from tbl_einnahme (doctype "Einnahme Item") according to the "kategorie"
-            // subtract the values from tbl_ausgabe (doctype "Ausgabe Item")  according to the "kategorie"
-            // from tbl_transaktion subtract and add according to kategorie
-        }
-        
-      ;  
-    },
-});
-*/
+frappe.ui.form.on("Kategorie Item", {
 
-frappe.ui.form.on("Endbetrag Item", {
-
-    height: function(frm, cdt, cdn){
+    startbetrag: function(frm, cdt, cdn){
         
         doc = frappe.get_doc(cdt, cdn);
-        if (doc.height !== undefined && doc.kategorie !== undefined) {
+        if (doc.startbetrag !== undefined && doc.kategorie !== undefined) {
             frm.save();
-            calculateEndbetrag(frm);
+            update_endbetrag_items(frm);
+            
         }
     },
     kategorie: function(frm, cdt, cdn){
         
         doc = frappe.get_doc(cdt, cdn);
-        if (doc.height !== undefined && doc.kategorie !== undefined) {
+        if (doc.startbetrag !== undefined && doc.kategorie !== undefined) {
             frm.save();
-            calculateEndbetrag(frm);
+            update_endbetrag_items(frm);
         }
     }
 });
 
 function calculateStartbetrag(frm){
     let total_betrag = 0;
-    frm.doc.tbl_startbetrag.forEach(s_item =>{
-        total_betrag += s_item.heigh;
+    frm.doc.tbl_kategorie.forEach(k_item =>{
+        total_betrag += k_item.startbetrag;
     });
     frappe.model.set_value("Monat", frm.doc.name, 'startbetrag', total_betrag);
 }
-
 function calculateEndbetrag(frm){
     let total_betrag = 0;
-    frm.doc.tbl_endbetrag.forEach(e_item =>{
-        total_betrag += e_item.height;
+    frm.doc.tbl_kategorie.forEach(k_item =>{
+        total_betrag += k_item.endbetrag;
     });
     frappe.model.set_value("Monat", frm.doc.name, 'endbetrag', total_betrag);
 }
@@ -617,56 +586,6 @@ frappe.ui.form.on('Budget Item', {
 
 
 
-/*
-frappe.ui.form.on('Betrag', { // The child table is defined in a DoctType called "Dynamic Link"
-    betrag(frm, cdt, cdn) { // "links" is the name of the table field in ToDo, "_add" is the event
-        // frm: current ToDo form
-        // cdt: child DocType 'Dynamic Link'
-        // cdn: child docname (something like 'a6dfk76')
-        // cdt and cdn are useful for identifying which row triggered this event
-        
-        betrag = frm.fields_dict.betrag.value;
-        
-        updateRestBudget(frm, cdt, cdn);
-    },
-    kategorie(frm, cdt, cdn) { // "links" is the name of the table field in ToDo, "_add" is the event
-        
-        kategorie = frm.fields_dict.kategorie.value;
-        
-        updateGesamtBudget(frm, cdt, cdn);
-        //updateRestBudget(frm, cdt, cdn);
-
-    },
-    datum(frm, cdt, cdn) { // "links" is the name of the table field in ToDo, "_add" is the event
-        
-        datum = frm.fields_dict.datum.value;
-        
-        updateRestBudget(frm, cdt, cdn);
-    }
-});
-*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function getDatum(monat, tag) {
     const monate = { jan: 0, feb: 1, mar: 2, apr: 3, mai: 4, jun: 5, jul: 6, aug: 7, sep: 8, okt: 9, nov: 10, dez: 11 };
     const monatIndex = monate[monat.toLowerCase()];
@@ -770,10 +689,7 @@ function start_dialog(frm) {
                 
                 });
             }
-        }
-
-            //console.log("after");
-            
+        }            
         
     });
     } else {
@@ -790,11 +706,65 @@ function createNextMonth(currentFrm) {
     let currentDate = currentFrm.doc.monat;
     let nextMonthDate = frappe.datetime.add_months(currentDate, 1);
 
+
+
+    // Get 'endbetrag' items from current month and add them to 'tbl_startbetrag' in the new month
+    let oldKategorieItems = currentFrm.doc.tbl_kategorie || [];
+    let kategorieItems = oldKategorieItems.map(item => {
+        return {
+            //'doctype': 'Kategorie Item',
+            'startbetrag': item.endbetrag, // beim Rest dürfte ja noch nichts stehen
+            'endbetrag': item.endbetrag,
+            'kategorie': item.kategorie,
+
+        };
+    });
+
+
+    let oldBudgetItems = undefined;
+
+    frappe.call({
+        async: false,
+        method: 'books.finanzen.doctype.budget_item.budget_item.get_budget_items',
+        args: {
+            'parent_name': currentFrm.doc.name
+        },
+        callback: function (response) {
+            oldBudgetItems = response.message;
+        }
+    });
+
+    let budgetItems = [];
+
+    oldBudgetItems.forEach(item =>{
+        frappe.call({
+            method: 'frappe.client.get',
+            async: false,
+            args: {
+                doctype: 'Budget', // Replace with the actual Doctype of the budget
+                name: item.von_budget
+            },
+            callback: function(r) {
+                if (r.message) {
+    
+                    budgetItems.push({
+                        budget_name: r.message.budget_name,
+                        betrag: r.message.betrag,
+                        von_budget: item.von_budget
+                    });
+                }
+            }
+        });
+    })
+    
+
     // Prepare the new month's data
     let newMonthData = {
         'doctype': 'Monat',
         'monat': nextMonthDate,
         'monat_davor':currentFrm.doc.name,
+        'tbl_kategorie':kategorieItems,
+        'tbl_budget':budgetItems
         // Other necessary fields for the new month can be added here
     };
 
@@ -806,38 +776,17 @@ function createNextMonth(currentFrm) {
         args: {
             doc: newMonthData
         },
-        callback: function(response) {
+        callback: function (response) {
             let newMonth = response.message;
-            if(newMonth) {
+            if (newMonth) {
                 // Link the new month in the 'monat_danach' field of the current month
                 currentFrm.set_value('monat_danach', newMonth.name);
                 currentFrm.save();
 
-                // Get 'endbetrag' items from current month and add them to 'tbl_startbetrag' in the new month
-                let endBetragItems = currentFrm.doc.tbl_endbetrag || [];
-                let startBetragItems = endBetragItems.map(item => {
-                    return {
-                        'doctype': 'Startbetrag Item',
-                        'heigh': item.height, // Assuming 'height' is the field in 'Endbetrag Item'
-                        'kategorie': item.kategorie
-                    };
-                });
 
-                // Add items to the new month's 'tbl_startbetrag'
-                startBetragItems.forEach(item => {
-                    frappe.call({
-                        method: 'frappe.client.insert',
-                        args: {
-                            doc: item,
-                            parent: newMonth.name,
-                            parentfield: 'tbl_startbetrag',
-                            parenttype: 'Monat'
-                        }
-                    });
-                });
 
                 created_month = newMonth;
-                newMonth.save();
+                //newMonth.save();
                 frappe.msgprint('Nächsten Monat erfolgreich angelegt und verknüpft.');
             }
         },
@@ -848,8 +797,9 @@ function createNextMonth(currentFrm) {
         success: function(r){
             $(next_month_btn).hide();
 
-            if(frm.doc.monat_danach !== undefined)
+            /*if(frm.doc.monat_danach !== undefined)
                 frappe.set_route("Form", "Monat", frm.doc.monat_danach);
+            */
         }
     });
     
