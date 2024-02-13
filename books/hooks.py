@@ -1,5 +1,5 @@
 app_name = "books"
-app_title = "Finanzen"
+app_title = "books"
 app_publisher = "Bernhard Hein"
 app_description = "Finanzverwaltung"
 app_email = "bern.hein@gmail.com"
