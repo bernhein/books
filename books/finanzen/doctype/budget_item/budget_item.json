@@ -57,7 +57,7 @@
  "links": [],
  "modified": "2024-01-19 21:09:03.089684",
  "modified_by": "Administrator",
- "module": "Finanzen",
+ "module": "books",
  "name": "Budget Item",
  "naming_rule": "Expression",
  "owner": "Administrator",

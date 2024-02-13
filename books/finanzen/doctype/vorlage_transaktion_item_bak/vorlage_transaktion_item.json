@@ -79,7 +79,7 @@
  "links": [],
  "modified": "2024-01-11 14:29:35.627484",
  "modified_by": "Administrator",
- "module": "Finanzen",
+ "module": "books",
  "name": "Vorlage Transaktion Item",
  "naming_rule": "Expression",
  "owner": "Administrator",

@@ -121,7 +121,7 @@
  "links": [],
  "modified": "2024-01-18 21:18:25.616149",
  "modified_by": "Administrator",
- "module": "Finanzen",
+ "module": "books",
  "name": "Ausgabe Item",
  "naming_rule": "Expression",
  "owner": "Administrator",

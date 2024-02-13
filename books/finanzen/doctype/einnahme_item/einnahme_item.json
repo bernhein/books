@@ -82,7 +82,7 @@
  "links": [],
  "modified": "2024-01-11 14:39:52.178154",
  "modified_by": "Administrator",
- "module": "Finanzen",
+ "module": "books",
  "name": "Einnahme Item",
  "naming_rule": "Expression",
  "owner": "Administrator",

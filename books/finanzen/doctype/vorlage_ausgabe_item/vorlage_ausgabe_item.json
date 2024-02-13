@@ -70,7 +70,7 @@
  "links": [],
  "modified": "2024-01-18 15:31:09.023343",
  "modified_by": "Administrator",
- "module": "Finanzen",
+ "module": "books",
  "name": "Vorlage Ausgabe Item",
  "naming_rule": "Expression",
  "owner": "Administrator",

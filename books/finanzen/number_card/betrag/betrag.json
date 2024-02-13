@@ -13,7 +13,7 @@
  "label": "Betrag",
  "modified": "2023-12-27 22:11:45.119481",
  "modified_by": "Administrator",
- "module": "Finanzen",
+ "module": "books",
  "name": "Betrag",
  "owner": "Administrator",
  "parent_document_type": "",

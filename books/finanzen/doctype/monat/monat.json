@@ -129,7 +129,7 @@
  "links": [],
  "modified": "2024-01-22 20:30:36.237886",
  "modified_by": "Administrator",
- "module": "Finanzen",
+ "module": "books",
  "name": "Monat",
  "naming_rule": "Expression",
  "owner": "Administrator",

@@ -15,7 +15,7 @@
  "is_standard": 1,
  "modified": "2023-12-27 22:09:41.716686",
  "modified_by": "Administrator",
- "module": "Finanzen",
+ "module": "books",
  "name": "Finanzen Dashboard",
  "owner": "Administrator"
 }

@@ -70,7 +70,7 @@
  "links": [],
  "modified": "2024-01-18 15:33:02.020945",
  "modified_by": "Administrator",
- "module": "Finanzen",
+ "module": "books",
  "name": "Vorlage Einnahme Item",
  "naming_rule": "Expression",
  "owner": "Administrator",

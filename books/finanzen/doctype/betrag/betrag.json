@@ -118,7 +118,7 @@
  "links": [],
  "modified": "2023-12-30 07:08:19.118314",
  "modified_by": "Administrator",
- "module": "Finanzen",
+ "module": "books",
  "name": "Betrag",
  "naming_rule": "Expression",
  "owner": "Administrator",
