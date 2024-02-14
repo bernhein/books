@@ -1,4 +1,4 @@
-app_name = "books"
+app_name = "finanzen"
 app_title = "Finanzen"
 app_publisher = "Bernhard Hein"
 app_description = "Finanzverwaltung"
